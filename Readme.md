@@ -1,0 +1,141 @@
+ ```
+ ___ __, __, _, _ _ _, _  _, _,     _,  _, _, _ ___ __,  _, _,  _,  __, __,
+  |  |_  |_) |\/| | |\ | /_\ |     / ` / \ |\ |  |  |_) / \ |   |   |_  |_)
+  |  |   | \ |  | | | \| | | | ,   \ , \ / | \|  |  | \ \ / | , | , |   | \
+  ~  ~~~ ~ ~ ~  ~ ~ ~  ~ ~ ~ ~~~    ~   ~  ~  ~  ~  ~ ~  ~  ~~~ ~~~ ~~~ ~ ~
+```
+
+A powerful, portable Visual Basic Script Library to control Windows Terminal.
+
+Include color output, cursor control, and so on.
+
+# View introduction in
+
+- [Chinese](Readme_zh.md)
+- [English](Readme.md)
+
+# Getting Started
+
+## Requirements
+
+- Microsoft Windows Operating System
+- Windows Terminal
+
+## Installation
+
+Run following commands as **administrator**:
+
+```
+git clone https://github.com/OldLiu001/TerminalController.vbs.git
+cd TerminalController.vbs
+regsvr32 TerminalController.wsc
+```
+
+**WARN: DO NOT REGISTER *LinearAlgebra.wsc* BY RIGHT CLICKING ON IT.**
+
+Then to create a instance of class, use following code:
+
+```
+Set objTerminalController = CreateObject("Terminal.Controller")
+```
+
+## Portability
+
+Copy *'TerminalController.vbs'* to your script's parent folder.
+
+Append the following code to your script:
+
+```
+Sub Import(strFileName)
+	With CreateObject("Scripting.FileSystemObject")
+		ExecuteGlobal .OpenTextFile( _
+			.GetParentFolderName( _
+			.GetFile(WScript.ScriptFullName)) & _
+			"\" & strFileName).ReadAll
+	End With
+End Sub
+```
+
+Then at the head of your script, use the following code to import this library:
+
+```
+Import "TerminalController.vbs"
+```
+
+To create a instance of the class:
+
+```
+Set objTerminalController = New TerminalController
+```
+
+## Usage
+
+First, set a callback function to post the output to the terminal.
+
+You can simply use the following code:
+
+```
+Function Printer(ByVal strControlSequence)
+	WScript.StdOut.Write strControlSequence
+End Function
+Set objTerminalController.Printer = GetRef("Printer")
+```
+
+Then you can use the following methods to control the terminal:
+
+|Name|Argument(s)|Equivalent Control Sequence|Description|
+|:----|:----|:----|:----|
+|SaveCursorPosition|-|Chr(27) & "7"|Save the current cursor position|
+|RestoreCursorPosition|-|Chr(27) & "8"|Restore the saved cursor position|
+|HideCursor|-|Chr(27) & "[?25l"|Hide the cursor|
+|ShowCursor|-|Chr(27) & "[?25h"|Show the cursor|
+|SaveScreen|-|Chr(27) & "[?1049h"|Save the screen|
+|RestoreScreen|-|Chr(27) & "[?1049l"|Restore the saved screen|
+|ClearScreen|-|Chr(27) & "[2J"|Clear the screen|
+|LimitScoll|lngTop, lngBottom|Chr(27) & "[" & lngTop & ";" & lngBottom & "r"|Limit the scoll|
+|ReleseScoll|-|Chr(27) & "[r"|Release the scoll|
+|MoveCursorToTopLeft|-|Chr(27) & "[H"|Move the cursor to the top left|
+|MoveCursorTo|lngRow, lngColumn|Chr(27) & "[" & lngRow & ";" & lngColumn & "H"|Move the cursor to the specified position|
+|MoveCursorToRow|lngRow|Chr(27) & "[" & lngRow & "H"|Move the cursor to the specified row|
+|MoveCursorToColumn|lngColumn|Chr(27) & "[" & lngColumn & "G"|Move the cursor to the specified column|
+|MoveCursorUp|lngCount|Chr(27) & "[" & lngCount & "A"|Move the cursor up|
+|MoveCursorDown|lngCount|Chr(27) & "[" & lngCount & "B"|Move the cursor down|
+|MoveCursorLeft|lngCount|Chr(27) & "[" & lngCount & "D"|Move the cursor left|
+|MoveCursorRight|lngCount|Chr(27) & "[" & lngCount & "C"|Move the cursor right|
+|SetTextStyle|strTextStyle|Chr(27) & "[" & strTextStyle & "m"|Set the text style|
+|SetTextColor|strForeground, strBackground|Chr(27) & "[" & strForeground & ";" & strBackground & "m"|Set the text color|
+|ResetTextAttributes|-|Chr(27) & "[0m"|Reset the text attributes|
+
+Here are some properties to get some information about the terminal:
+
+|Name|Type|Description|
+|:----|:----|:----|
+|RowLength|Long|The number of rows|
+|ColumnLength|Long|The number of columns|
+
+# References
+
+Naming rules:
+
+|Prefix|Type|
+|:----|:----|
+|lng|Long|
+|str|String|
+|obj|Object|
+|arr|Array|
+
+Colors: *Black*, *Red*, *Green*, *Yellow*, *Blue*, *Magenta*, *Cyan*, *White*, *BrightBlack*, *BrightRed*, *BrightGreen*, *BrightYellow*, *BrightBlue*, *BrightMagenta*, *BrightCyan*, *BrightWhite*, *Default*.
+
+Styles: *Normal*, *Bold*, *Dim*, *Italic*, *Underline*, *Blink*, *Reverse*, *Invisible*, *Strikeout*.
+
+# Examples
+
+- [Colors.vbs](Examples/Colors.vbs) - test all colors
+- [Styles.vbs](Examples/Styles.vbs) - test all styles
+- [Rain.vbs](Examples/Rain.vbs) - code rain animation
+
+# See Also
+
+- [writing-a-tui-in-bash](https://github.com/dylanaraps/writing-a-tui-in-bash)
+- [color.js](https://github.com/Marak/colors.js)
+- [vt510](https://vt100.net/docs/vt510-rm/contents.html)

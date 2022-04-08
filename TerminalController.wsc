@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="TerminalController">
+	<?component error="true" debug="true"?>
+	<registration
+		description="Windows Terminal Controller"
+		progid="Terminal.Controller"
+		version="1.00"
+		classid="{20011228-5218-767e-8d85-632171029010}"
+	/>
+	<public>
+		<property name="RowLength">
+			<get />
+		</property>
+		<property name="ColumnLength">
+			<get />
+		</property>
+		<property name="Printer">
+			<put />
+		</property>
+		<method name="SaveCursorPosition" />
+		<method name="RestoreCursorPosition" />
+		<method name="HideCursor" />
+		<method name="ShowCursor" />
+		<method name="SaveScreen" />
+		<method name="RestoreScreen" />
+		<method name="ClearScreen" />
+		<method name="LimitScoll">
+			<PARAMETER name="lngTop" />
+			<PARAMETER name="lngBottom" />
+		</method>
+		<method name="ReleseScoll" />
+		<method name="MoveCursorToTopLeft" />
+		<method name="MoveCursorTo">
+			<PARAMETER name="lngRow" />
+			<PARAMETER name="lngColumn" />
+		</method>
+		<method name="MoveCursorToRow">
+			<PARAMETER name="lngRow" />
+		</method>
+		<method name="MoveCursorToColumn">
+			<PARAMETER name="lngColumn" />
+		</method>
+		<method name="MoveCursorUp">
+			<PARAMETER name="lngCount" />
+		</method>
+		<method name="MoveCursorDown">
+			<PARAMETER name="lngCount" />
+		</method>
+		<method name="MoveCursorLeft">
+			<PARAMETER name="lngCount" />
+		</method>
+		<method name="MoveCursorRight">
+			<PARAMETER name="lngCount" />
+		</method>
+		<method name="SetTextStyle">
+			<PARAMETER name="strStyle" />
+		</method>
+		<method name="SetTextColor">
+			<PARAMETER name="strForegroundColor" />
+			<PARAMETER name="strBackgroundColor" />
+		</method>
+		<method name="ResetTextAttributes" />
+	</public>
+	<script language="VBScript" src="TerminalController.vbs" />
+	<script language="VBScript">
+		<![CDATA[
+			Option Explicit
+
+			Dim objTerminalController
+			Set objTerminalController = New TerminalController
+
+			Public Function get_RowLength()
+				get_RowLength = objTerminalController.RowLength
+			End Function
+
+			Public Function get_ColumnLength()
+				get_ColumnLength = objTerminalController.ColumnLength
+			End Function
+
+			Public Function put_Printer(objPrinter)
+				Set objTerminalController.Printer = objPrinter
+			End Function
+
+			Public Sub SaveCursorPosition()
+				objTerminalController.SaveCursorPosition
+			End Sub
+
+			Public Sub RestoreCursorPosition()
+				objTerminalController.RestoreCursorPosition
+			End Sub
+
+			Public Sub HideCursor()
+				objTerminalController.HideCursor
+			End Sub
+
+			Public Sub ShowCursor()
+				objTerminalController.ShowCursor
+			End Sub
+
+			Public Sub SaveScreen()
+				objTerminalController.SaveScreen
+			End Sub
+
+			Public Sub RestoreScreen()
+				objTerminalController.RestoreScreen
+			End Sub
+
+			Public Sub ClearScreen()
+				objTerminalController.ClearScreen
+			End Sub
+
+			Public Sub LimitScoll(ByVal lngTop, ByVal lngBottom)
+				objTerminalController.LimitScoll lngTop, lngBottom
+			End Sub
+
+			Public Sub ReleseScoll()
+				objTerminalController.ReleseScoll
+			End Sub
+
+			Public Sub MoveCursorToTopLeft()
+				objTerminalController.MoveCursorToTopLeft
+			End Sub
+
+			Public Sub MoveCursorTo(ByVal lngRow, ByVal lngColumn)
+				objTerminalController.MoveCursorTo lngRow, lngColumn
+			End Sub
+
+			Public Sub MoveCursorToRow(ByVal lngRow)
+				objTerminalController.MoveCursorToRow lngRow
+			End Sub
+
+			Public Sub MoveCursorToColumn(ByVal lngColumn)
+				objTerminalController.MoveCursorToColumn lngColumn
+			End Sub
+
+			Public Sub MoveCursorUp(ByVal lngCount)
+				objTerminalController.MoveCursorUp lngCount
+			End Sub
+
+			Public Sub MoveCursorDown(ByVal lngCount)
+				objTerminalController.MoveCursorDown lngCount
+			End Sub
+
+			Public Sub MoveCursorLeft(ByVal lngCount)
+				objTerminalController.MoveCursorLeft lngCount
+			End Sub
+
+			Public Sub MoveCursorRight(ByVal lngCount)
+				objTerminalController.MoveCursorRight lngCount
+			End Sub
+
+			Public Sub SetTextStyle(ByVal strStyle)
+				objTerminalController.SetTextStyle strStyle
+			End Sub
+
+			Public Sub SetTextColor(ByVal strForegroundColor, ByVal strBackgroundColor)
+				objTerminalController.SetTextColor strForegroundColor, strBackgroundColor
+			End Sub
+
+			Public Sub ResetTextAttributes()
+				objTerminalController.ResetTextAttributes
+			End Sub
+
+		]]>
+	</script>
+</component>
