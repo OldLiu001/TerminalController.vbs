@@ -9,7 +9,7 @@
 
 可实现彩色输出、光标控制等功能。
 
-# 浏览介绍
+# 浏览
 
 - [中文](Readme_zh.md)
 - [英文](Readme.md)
@@ -41,7 +41,7 @@ Set objTerminalController = CreateObject("Terminal.Controller")
 
 ## 便携
 
-复制 *TerminalController.vbs* 到脚本的父文件夹。
+复制脚本 *TerminalController.vbs* 到你的脚本所在文件夹下。
 
 将下列代码添加至脚本末尾：
 
@@ -81,7 +81,7 @@ End Function
 Set objTerminalController.Printer = GetRef("Printer")
 ```
 
-然后可以使用下列的若干函数控制终端：
+然后可以使用下列的若干方法控制终端：
 
 |名称|参数|等价控制序列|描述|
 |:----|:----|:----|:----|

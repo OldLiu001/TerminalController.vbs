@@ -41,7 +41,7 @@ Set objTerminalController = CreateObject("Terminal.Controller")
 
 ## Portability
 
-Copy *'TerminalController.vbs'* to your script's parent folder.
+Copy script file *'TerminalController.vbs'* to your script's parent folder.
 
 Append the following code to your script:
 
