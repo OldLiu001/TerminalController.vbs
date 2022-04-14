@@ -1,11 +1,13 @@
- ```
+```
  ___ __, __, _, _ _ _, _  _, _,     _,  _, _, _ ___ __,  _, _,  _,  __, __,
   |  |_  |_) |\/| | |\ | /_\ |     / ` / \ |\ |  |  |_) / \ |   |   |_  |_)
   |  |   | \ |  | | | \| | | | ,   \ , \ / | \|  |  | \ \ / | , | , |   | \
   ~  ~~~ ~ ~ ~  ~ ~ ~  ~ ~ ~ ~~~    ~   ~  ~  ~  ~  ~ ~  ~  ~~~ ~~~ ~~~ ~ ~
 ```
 
-A powerful, portable Visual Basic Script Library to control Windows Terminal.
+A powerful, portable COM component written in *VBScript* to control Windows Terminal.
+
+*JScript* is also available for use with this component.
 
 Include color output, cursor control, and so on.
 
@@ -35,8 +37,16 @@ regsvr32 TerminalController.wsc
 
 Then to create a instance of class, use following code:
 
+*VBScript*
+
 ```
 Set objTerminalController = CreateObject("Terminal.Controller")
+```
+
+*JScript*
+
+```
+var objTerminalController = new ActiveXObject("Terminal.Controller");
 ```
 
 ## Portability
@@ -74,11 +84,21 @@ First, set a callback function to post the output to the terminal.
 
 You can simply use the following code:
 
+*VBScript*
+
 ```
 Function Printer(ByVal strControlSequence)
 	WScript.StdOut.Write strControlSequence
 End Function
 Set objTerminalController.Printer = GetRef("Printer")
+```
+
+*JScript*
+
+```
+objTerminalController.Printer = function(strControlSequence) {
+	WScript.StdOut.Write(strControlSequence);
+}
 ```
 
 Then you can use the following methods to control the terminal:
@@ -133,6 +153,7 @@ Styles: *Normal*, *Bold*, *Dim*, *Italic*, *Underline*, *Blink*, *Reverse*, *Inv
 - [Colors.vbs](Examples/Colors.vbs) - test all colors
 - [Styles.vbs](Examples/Styles.vbs) - test all styles
 - [Rain.vbs](Examples/Rain.vbs) - code rain animation
+- [Startup.js](Examples/Startup.js) - Windows 2000 startup animation in JScript
 
 # See Also
 

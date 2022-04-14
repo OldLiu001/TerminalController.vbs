@@ -1,13 +1,12 @@
- ```
+```
  ___ __, __, _, _ _ _, _  _, _,     _,  _, _, _ ___ __,  _, _,  _,  __, __,
   |  |_  |_) |\/| | |\ | /_\ |     / ` / \ |\ |  |  |_) / \ |   |   |_  |_)
   |  |   | \ |  | | | \| | | | ,   \ , \ / | \|  |  | \ \ / | , | , |   | \
   ~  ~~~ ~ ~ ~  ~ ~ ~  ~ ~ ~ ~~~    ~   ~  ~  ~  ~  ~ ~  ~  ~~~ ~~~ ~~~ ~ ~
 ```
 
-为 *VBS* 而生，实用且便携的 *Windows Terminal* 控制器类。
-
-可实现彩色输出、光标控制等功能。
+为 *VBS*、*JScript* 而生，由 *VBS* 写就的 *COM* 组件。
+实用且便携的 *Windows Terminal* 控制类，可实现彩色输出、光标控制等功能。
 
 # 浏览
 
@@ -35,9 +34,19 @@ regsvr32 TerminalController.wsc
 
 使用下列代码创建类的实例：
 
+
+*VBScript*
+
 ```
 Set objTerminalController = CreateObject("Terminal.Controller")
 ```
+
+*JScript*
+
+```
+var objTerminalController = new ActiveXObject("Terminal.Controller");
+```
+
 
 ## 便携
 
@@ -74,11 +83,21 @@ Set objTerminalController = New TerminalController
 
 可直接使用下列代码：
 
+*VBScript*
+
 ```
 Function Printer(ByVal strControlSequence)
 	WScript.StdOut.Write strControlSequence
 End Function
 Set objTerminalController.Printer = GetRef("Printer")
+```
+
+*JScript*
+
+```
+objTerminalController.Printer = function(strControlSequence) {
+	WScript.StdOut.Write(strControlSequence);
+}
 ```
 
 然后可以使用下列的若干方法控制终端：
@@ -133,6 +152,7 @@ Set objTerminalController.Printer = GetRef("Printer")
 - [Colors.vbs](Examples/Colors.vbs) - 测试所有颜色
 - [Styles.vbs](Examples/Styles.vbs) - 测试所有文本类型
 - [Rain.vbs](Examples/Rain.vbs) - 代码雨特效
+- [Startup.js](Examples/Startup.js) - Windows 2000 启动特效（JScript）
 
 # 参照
 
