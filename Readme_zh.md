@@ -149,7 +149,7 @@ Set objTerminalController = New TerminalController
 			Set GenerateObject = EVal("New " & strClassName)
 		End Function
 	</script>
-	<script language="VBScript" src="MyScript.js" />
+	<script language="JScript" src="MyScript.js" />
 </job>
 ```
 
