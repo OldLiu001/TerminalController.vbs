@@ -96,6 +96,10 @@ Class TerminalController
 		ColumnLength = lngColumn
 	End Property
 
+	Public Function SetPrinter(ByRef objPrinter)
+		Set Print = objPrinter
+	End Function
+
 	Public Property Set Printer(ByRef objPrinter)
 		Set Print = objPrinter
 	End Property

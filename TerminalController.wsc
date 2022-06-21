@@ -17,6 +17,7 @@
 		<property name="Printer">
 			<put />
 		</property>
+		<method name="SetPrinter" />
 		<method name="SaveCursorPosition" />
 		<method name="RestoreCursorPosition" />
 		<method name="HideCursor" />
@@ -77,8 +78,12 @@
 				get_ColumnLength = objTerminalController.ColumnLength
 			End Function
 
-			Public Function put_Printer(objPrinter)
+			Public Function put_Printer(ByRef objPrinter)
 				Set objTerminalController.Printer = objPrinter
+			End Function
+
+			Public Function SetPrinter(ByRef objPrinter)
+				objTerminalController.SetPrinter(objPrinter)
 			End Function
 
 			Public Sub SaveCursorPosition()

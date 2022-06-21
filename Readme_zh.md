@@ -54,11 +54,49 @@ var objTerminalController = new ActiveXObject("Terminal.Controller");
 
 ### VBScript
 
-#### 方法1：使用 **“Windows 脚本宿主文件”**
+#### 方法1：使用 **“Windows 脚本宿主文件” (WSF)**
+
+复制脚本 *TerminalController.vbs* 到您脚本所在的文件夹下。
+
+假设您的脚本的文件名为 *MyScript.vbs* ，使用如下的代码模板：
+
+*Template.wsf*
+
+```
+<job id="MyScript">
+	<script language="VBScript" src="TerminalController.vbs" />
+	<script language="VBScript" src="MyScript.vbs" />
+</job>
+```
+
+将其放置到您脚本所在的文件夹下。
+
+或将脚本和类库都嵌入 *WSF* 中：
+
+*Template_Embedded.wsf*
+
+```
+<job id="MyScript">
+	<script language="VBScript">
+		' 此处写 "TerminalController.vbs" 文件的内容
+	</script>
+	<script language="VBScript">
+		' 此处写 "MyScript.vbs" 文件的内容
+	</script>
+</job>
+```
+
+当然，您可以只将必要的部分嵌入 *WSF* 中，此处不再赘述。
+
+创建类的实例：
+
+```
+Set objTerminalController = New TerminalController
+```
 
 #### 方法2：使用 **“ExecuteGlobal”**
 
-复制脚本 *TerminalController.vbs* 到你的脚本所在文件夹下。
+复制脚本 *TerminalController.vbs* 到您脚本所在的文件夹下。
 
 将下列代码添加至脚本末尾：
 
@@ -95,9 +133,49 @@ Set objTerminalController = New TerminalController
 Set objTerminalController = New TerminalController
 ```
 
-### JScript：使用 **“Windows 脚本宿主文件”**
+### JScript
 
+假设您的脚本名为 *MyScript.js* 。
 
+类似 *VBScript* ，您可使用下列代码模板：
+
+*Template.wsf*
+
+```
+<job id="MyScript">
+	<script language="VBScript" src="TerminalController.vbs" />
+	<script language="VBScript">
+		Function GenerateObject(ByVal strClassName)
+			Set GenerateObject = EVal("New " & strClassName)
+		End Function
+	</script>
+	<script language="VBScript" src="MyScript.js" />
+</job>
+```
+
+*Template_Embedded.wsf*
+
+```
+<job id="MyScript">
+	<script language="VBScript">
+		' 此处写 "TerminalController.vbs" 文件的内容
+	</script>
+	<script language="VBScript">
+		Function GenerateObject(ByVal strClassName)
+			Set GenerateObject = EVal("New " & strClassName)
+		End Function
+	</script>
+	<script language="JScript">
+		// 此处写 "MyScript.js" 文件的内容
+	</script>
+</job>
+```
+
+创建类的实例：
+
+```
+var objTerminalController = GenerateObject("TerminalController");
+```
 
 ## 用法
 
@@ -111,15 +189,15 @@ Set objTerminalController = New TerminalController
 Function Printer(ByVal strControlSequence)
 	WScript.StdOut.Write strControlSequence
 End Function
-Set objTerminalController.Printer = GetRef("Printer")
+objTerminalController.SetPrinter GetRef("Printer")
 ```
 
 *JScript*
 
 ```
-objTerminalController.Printer = function(strControlSequence) {
+objTerminalController.SetPrinter(function (strControlSequence) {
 	WScript.StdOut.Write(strControlSequence);
-}
+});
 ```
 
 然后可以使用下列的若干方法控制终端：
@@ -164,10 +242,10 @@ objTerminalController.Printer = function(strControlSequence) {
 
 # 示例
 
-- [Colors.vbs](Examples/Colors.vbs) - 测试所有颜色
-- [Styles.vbs](Examples/Styles.vbs) - 测试所有文本类型
-- [Rain.vbs](Examples/Rain.vbs) - 代码雨特效
-- [Startup.js](Examples/Startup.js) - Windows 2000 启动特效
+- [Colors.vbs](Examples/Colors.vbs) - 测试所有颜色 (VBScript)
+- [Styles.vbs](Examples/Styles.wsf) - 测试所有文本类型 (VBScript)
+- [Rain.vbs](Examples/Rain.vbs) - 代码雨特效 (VBScript)
+- [Startup.js](Examples/Startup.js) - Windows 2000 启动特效 (JScript)
 
 # 参照
 
