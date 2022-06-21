@@ -33,7 +33,7 @@ cd TerminalController.vbs
 regsvr32 TerminalController.wsc
 ```
 
-**WARN: DO NOT REGISTER *LinearAlgebra.wsc* BY RIGHT CLICKING ON IT.**
+**WARN: DO NOT REGISTER *TerminalController.wsc* BY RIGHT CLICKING ON IT.**
 
 Then to create a instance of class, use following code:
 
@@ -50,6 +50,14 @@ var objTerminalController = new ActiveXObject("Terminal.Controller");
 ```
 
 ## Portability
+
+Made a Portable version can help you publishing your script to others.
+
+### For **Visual Basic Script**
+
+#### Method 1: Using **"Windows Scripting Host File"**
+
+#### Method 2: Using **"ExecuteGlobal"**
 
 Copy script file *'TerminalController.vbs'* to your script's parent folder.
 
@@ -77,6 +85,19 @@ To create a instance of the class:
 ```
 Set objTerminalController = New TerminalController
 ```
+
+#### Method 3: Embedding library into your script
+
+Append *'TerminalController.vbs'* to your script.
+
+
+To create a instance of the class:
+
+```
+Set objTerminalController = New TerminalController
+```
+
+### For **JScript**: Using **"Windows Scripting Host File"**
 
 ## Usage
 
@@ -135,7 +156,7 @@ Here are some properties to get some information about the terminal:
 
 # References
 
-Naming rules:
+Hungarian notation: *lng* **Long**, *str* **String**, *obj* **Object**, *arr* **Array**.
 
 |Prefix|Type|
 |:----|:----|

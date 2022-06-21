@@ -30,7 +30,7 @@ cd TerminalController.vbs
 regsvr32 TerminalController.wsc
 ```
 
-**警告：不要使用右键菜单注册 *LinearAlgebra.wsc* 。**
+**警告：不要使用右键菜单注册 *TerminalController.wsc* 。**
 
 使用下列代码创建类的实例：
 
@@ -49,6 +49,14 @@ var objTerminalController = new ActiveXObject("Terminal.Controller");
 
 
 ## 便携
+
+制作便携版本后，其他用户无需进行上述的安装操作即可使用您的脚本。
+
+### VBScript
+
+#### 方法1：使用 **“Windows 脚本宿主文件”**
+
+#### 方法2：使用 **“ExecuteGlobal”**
 
 复制脚本 *TerminalController.vbs* 到你的脚本所在文件夹下。
 
@@ -76,6 +84,20 @@ Import "TerminalController.vbs"
 ```
 Set objTerminalController = New TerminalController
 ```
+
+#### 方法3： 将类库嵌入脚本中
+
+将脚本 *TerminalController.vbs* 的内容添加至您的脚本末尾。
+
+创建类的实例：
+
+```
+Set objTerminalController = New TerminalController
+```
+
+### JScript：使用 **“Windows 脚本宿主文件”**
+
+
 
 ## 用法
 
@@ -112,7 +134,7 @@ objTerminalController.Printer = function(strControlSequence) {
 |RestoreScreen|-|Chr(27) & "[?1049l"|恢复屏幕|
 |ClearScreen|-|Chr(27) & "[2J"|清除屏幕|
 |LimitScoll|lngTop, lngBottom|Chr(27) & "[" & lngTop & ";" & lngBottom & "r"|限制滚动|
-|ReleseScoll|-|Chr(27) & "[r"|释放滚动限制|
+|ReleseScoll|-|Chr(27) & "[r"|解除滚动限制|
 |MoveCursorToTopLeft|-|Chr(27) & "[H"|将光标移动至终端左上角|
 |MoveCursorTo|lngRow, lngColumn|Chr(27) & "[" & lngRow & ";" & lngColumn & "H"|将光标移动至指定位置|
 |MoveCursorToRow|lngRow|Chr(27) & "[" & lngRow & "H"|将光标移动至指定行|
@@ -134,14 +156,7 @@ objTerminalController.Printer = function(strControlSequence) {
 
 # 参考
 
-命名规则：
-
-|前缀|类型|
-|:----|:----|
-|lng|Long|
-|str|String|
-|obj|Object|
-|arr|Array|
+匈牙利命名：*lng* **Long**, *str* **String**, *obj* **Object**, *arr* **Array**.
 
 颜色可选值：黑 *Black*, 红 *Red*, 绿 *Green*, 黄 *Yellow*, 蓝 *Blue*, 品红 *Magenta*, 青 *Cyan*, 白 *White*, 亮黑 *BrightBlack*, 亮红 *BrightRed*, 亮绿 *BrightGreen*, 亮黄 *BrightYellow*, 亮蓝 *BrightBlue*, 亮品红 *BrightMagenta*, 亮青 *BrightCyan*, 亮白 *BrightWhite*, 默认 *Default*.
 
@@ -152,7 +167,7 @@ objTerminalController.Printer = function(strControlSequence) {
 - [Colors.vbs](Examples/Colors.vbs) - 测试所有颜色
 - [Styles.vbs](Examples/Styles.vbs) - 测试所有文本类型
 - [Rain.vbs](Examples/Rain.vbs) - 代码雨特效
-- [Startup.js](Examples/Startup.js) - Windows 2000 启动特效（JScript）
+- [Startup.js](Examples/Startup.js) - Windows 2000 启动特效
 
 # 参照
 
