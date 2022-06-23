@@ -2,7 +2,7 @@ Set objTerminal = CreateObject("Terminal.Controller")
 Function Printer(strControlSequence)
 	WScript.StdOut.Write strControlSequence
 End Function
-Set objTerminal.Printer = GetRef("Printer")
+objTerminal.SetPrinter GetRef("Printer")
 
 'Foreground Colors
 objTerminal.SetTextColor "Black", "Default"

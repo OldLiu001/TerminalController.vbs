@@ -6,6 +6,7 @@
 ```
 
 为 *VBS*、*JScript* 而生，由 *VBS* 写就的 *COM* 组件。
+
 实用且便携的 *Windows Terminal* 控制类，可实现彩色输出、光标控制等功能。
 
 # 浏览
@@ -71,7 +72,7 @@ var objTerminalController = new ActiveXObject("Terminal.Controller");
 
 将其放置到您脚本所在的文件夹下。
 
-或将脚本和类库都嵌入 *WSF* 中：
+或将脚本和类库都嵌入单个 *WSF* 中：
 
 *Template_Embedded.wsf*
 
@@ -243,9 +244,12 @@ objTerminalController.SetPrinter(function (strControlSequence) {
 # 示例
 
 - [Colors.vbs](Examples/Colors.vbs) - 测试所有颜色 (VBScript)
-- [Styles.vbs](Examples/Styles.wsf) - 测试所有文本类型 (VBScript)
+- [Styles.wsf](Examples/Styles.wsf) - 测试所有文本类型 (VBScript)
 - [Rain.vbs](Examples/Rain.vbs) - 代码雨特效 (VBScript)
 - [Startup.js](Examples/Startup.js) - Windows 2000 启动特效 (JScript)
+- [LifeGame.wsf](Examples/LifeGame.wsf) - 康威生命游戏 (JScript)
+- [Ant.wsf] - 兰顿蚂蚁 (JScript)
+
 
 # 参照
 

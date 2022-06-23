@@ -1,7 +1,7 @@
 var oTerminal = new ActiveXObject("Terminal.Controller");
-oTerminal.Printer = function(sControlSequence) {
+oTerminal.SetPrinter(function(sControlSequence) {
 	WScript.StdOut.Write(sControlSequence);
-}
+});
 
 var sText = "Microsoft Windows 2000";
 oTerminal.ClearScreen();

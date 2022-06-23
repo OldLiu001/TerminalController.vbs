@@ -51,11 +51,50 @@ var objTerminalController = new ActiveXObject("Terminal.Controller");
 
 ## Portability
 
-Made a Portable version can help you publishing your script to others.
+A Portable version can help you publish your script to others.
 
 ### For **Visual Basic Script**
 
-#### Method 1: Using **"Windows Scripting Host File"**
+#### Method 1: Using **"Windows Script host File"**
+
+Copy script file *'TerminalController.vbs'* to your script's parent folder.
+
+Assume that your script's file name is *MyScript.vbs*, use following template code:
+
+
+*Template.wsf*
+
+```
+<job id="MyScript">
+	<script language="VBScript" src="TerminalController.vbs" />
+	<script language="VBScript" src="MyScript.vbs" />
+</job>
+```
+
+Save *Template.wsf* to folder where your script also in.
+
+In another way, you can embedding script & library into a single *WSF*:
+
+*Template_Embedded.wsf*
+
+```
+<job id="MyScript">
+	<script language="VBScript">
+		' contents of "TerminalController.vbs"
+	</script>
+	<script language="VBScript">
+		' contents  of "MyScript.vbs"
+	</script>
+</job>
+```
+
+Of course, you can only embed necessary part(s) of script into a *WSF*, we will talk about it no more.
+
+To create a instance of the class:
+
+```
+Set objTerminalController = New TerminalController
+```
 
 #### Method 2: Using **"ExecuteGlobal"**
 
@@ -97,7 +136,49 @@ To create a instance of the class:
 Set objTerminalController = New TerminalController
 ```
 
-### For **JScript**: Using **"Windows Scripting Host File"**
+### For **JScript**
+
+Assume that your script's file name is *MyScript.js*.
+
+Similar with *VBScript*, you can simply use the following templates.
+
+*Template.wsf*
+
+```
+<job id="MyScript">
+	<script language="VBScript" src="TerminalController.vbs" />
+	<script language="VBScript">
+		Function GenerateObject(ByVal strClassName)
+			Set GenerateObject = EVal("New " & strClassName)
+		End Function
+	</script>
+	<script language="JScript" src="MyScript.js" />
+</job>
+```
+
+*Template_Embedded.wsf*
+
+```
+<job id="MyScript">
+	<script language="VBScript">
+		' "TerminalController.vbs"'s content here
+	</script>
+	<script language="VBScript">
+		Function GenerateObject(ByVal strClassName)
+			Set GenerateObject = EVal("New " & strClassName)
+		End Function
+	</script>
+	<script language="JScript">
+		// "MyScript.js"'s content here
+	</script>
+</job>
+```
+
+To create a instance of the class:
+
+```
+var objTerminalController = GenerateObject("TerminalController");
+```
 
 ## Usage
 
@@ -111,15 +192,15 @@ You can simply use the following code:
 Function Printer(ByVal strControlSequence)
 	WScript.StdOut.Write strControlSequence
 End Function
-Set objTerminalController.Printer = GetRef("Printer")
+objTerminalController.SetPrinter GetRef("Printer")
 ```
 
 *JScript*
 
 ```
-objTerminalController.Printer = function(strControlSequence) {
+objTerminalController.SetPrinter(function (strControlSequence) {
 	WScript.StdOut.Write(strControlSequence);
-}
+});
 ```
 
 Then you can use the following methods to control the terminal:
@@ -158,23 +239,18 @@ Here are some properties to get some information about the terminal:
 
 Hungarian notation: *lng* **Long**, *str* **String**, *obj* **Object**, *arr* **Array**.
 
-|Prefix|Type|
-|:----|:----|
-|lng|Long|
-|str|String|
-|obj|Object|
-|arr|Array|
-
 Colors: *Black*, *Red*, *Green*, *Yellow*, *Blue*, *Magenta*, *Cyan*, *White*, *BrightBlack*, *BrightRed*, *BrightGreen*, *BrightYellow*, *BrightBlue*, *BrightMagenta*, *BrightCyan*, *BrightWhite*, *Default*.
 
 Styles: *Normal*, *Bold*, *Dim*, *Italic*, *Underline*, *Blink*, *Reverse*, *Invisible*, *Strikeout*.
 
 # Examples
 
-- [Colors.vbs](Examples/Colors.vbs) - test all colors
-- [Styles.vbs](Examples/Styles.vbs) - test all styles
-- [Rain.vbs](Examples/Rain.vbs) - code rain animation
+- [Colors.vbs](Examples/Colors.vbs) - test all colors in VBScript
+- [Styles.wsf](Examples/Styles.wsf) - test all styles in VBScript
+- [Rain.vbs](Examples/Rain.vbs) - code rain animation in VBScript
 - [Startup.js](Examples/Startup.js) - Windows 2000 startup animation in JScript
+- [LifeGame.wsf](Examples/LifeGame.wsf) - Conway's Game of Life in JScript
+- [Ant.wsf] - Langton's ant in JScript
 
 # See Also
 
