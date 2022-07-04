@@ -248,7 +248,7 @@ objTerminalController.SetPrinter(function (strControlSequence) {
 - [Rain.vbs](Examples/Rain.vbs) - 代码雨特效 (VBScript)
 - [Startup.js](Examples/Startup.js) - Windows 2000 启动特效 (JScript)
 - [LifeGame.wsf](Examples/LifeGame.wsf) - 康威生命游戏 (JScript)
-- [Ant.wsf] - 兰顿蚂蚁 (JScript)
+- [Ant.js](Examples/Ant.js) - 兰顿蚂蚁 (JScript)
 
 
 # 参照

@@ -1,4 +1,4 @@
-'Option Explicit
+Option Explicit
 Const CHAR_MAP = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
 Dim objTerminal
@@ -9,53 +9,51 @@ End Function
 objTerminal.SetPrinter GetRef("Printer")
 
 objTerminal.HideCursor
-objTerminal.SetTextColor "BrightGreen", "Black"
 objTerminal.ClearScreen
 
 
 Dim lngWidth, lngHeight
 lngWidth = objTerminal.ColumnLength
-lngHeight = objTerminal.RowLength - 1
-strScreen = Replace(Space(lngHeight), " ", Space(lngWidth) & vbNewLine)
-wsh.echo "a" + strScreen + "b"
-'Class Raindrop
+lngHeight = objTerminal.RowLength
+Dim alngRainDropLength(), alngRainDropHead(), alngRainDropTail(), astrRainDropHead()
+ReDim alngRainDropLength(lngWidth - 1), alngRainDropHead(lngWidth - 1)
+ReDim alngRainDropTail(lngWidth - 1), astrRainDropHead(lngWidth - 1)
 
-'msgbox Join(Split(String(lngWidth, " _"), "_"), ",")
-Dim NowDown(),y(),Length()
-ReDim NowDown(objTerminal.ColumnLength - 1),y(objTerminal.RowLength - 1 - 1),SpaceArray(objTerminal.ColumnLength - 1),Length(objTerminal.ColumnLength - 1)
-For i = 1 To objTerminal.ColumnLength
-	SpaceArray(i - 1) = " "
-Next
-For i = 1 To objTerminal.RowLength - 1
-	y(i-1)=SpaceArray
-Next
+Dim i
 While True
-	For i = 0 To UBound(NowDown)
-		If NowDown(i) = Empty Then
-			NowDown(i) = - Fix(Rnd * Height)
-			Length(i) = Fix(Rnd * (Height / 3) * 2) + Fix(Height / 4)
+	For i = 0 To lngWidth - 1
+                'Generate rain drop
+		If alngRainDropHead(i) = Empty Then
+	        	alngRainDropHead(i) = - Fix(Rnd * lngHeight)
+	        	alngRainDropLength(i) = Fix(Rnd * (lngHeight / 3) * 2) + Fix(lngHeight / 4)
 		End If
-		If NowDown(i) < Height And NowDown(i) >= 0 Then
-			y(NowDown(i))(i) = Mid(CHAR_MAP,Fix(Rnd * Len(CHAR_MAP)) + 1,1)
+
+                alngRainDropTail(i) = alngRainDropHead(i) - alngRainDropLength(i)
+
+                'Draw rain drop
+		If alngRainDropHead(i) < lngHeight And alngRainDropHead(i) >= 0 Then
+                        If alngRainDropHead(i) >= 1 Then
+                            objTerminal.SetTextColor "BrightGreen", "Black"
+                            objTerminal.MoveCursorTo alngRainDropHead(i), i
+	                    WScript.StdOut.Write astrRainDropHead(i)
+                        End If
+                        
+                        objTerminal.SetTextColor "BrightWhite", "Black"
+                        objTerminal.MoveCursorTo alngRainDropHead(i) + 1, i
+                        astrRainDropHead(i) = Mid(CHAR_MAP,Fix(Rnd * Len(CHAR_MAP)) + 1,1)
+	                WScript.StdOut.Write astrRainDropHead(i)
 		End If
-		If NowDown(i) - Length(i) >= 0 And NowDown(i) - Length(i) < Height Then
-			y(NowDown(i) - Length(i))(i) = " "
+		If alngRainDropTail(i) < lngHeight And alngRainDropTail(i) >= 0 Then
+                        objTerminal.MoveCursorTo alngRainDropTail(i) + 1, i
+	                WScript.StdOut.Write " "
 		End If
-		If NowDown(i) - Length(i) + 1 = Height Then
-			NowDown(i) = Empty
+
+                'Clear rain drop
+		If alngRainDropTail(i) + 1 = lngHeight Then
+			alngRainDropHead(i) = Empty
 		Else
-			NowDown(i) = NowDown(i) + 1
+			alngRainDropHead(i) = alngRainDropHead(i) + 1
 		End If
 	Next
-	objTerminal.MoveCursorToTopLeft
-	WScript.StdOut.Write GetStr(y)
 	WScript.Sleep 10
-Wend
-
-
-Function GetStr(Arr)
-	Dim i
-	For i = 0 To UBound(Arr)
-		GetStr = GetStr & Join(Arr(i),"") & vbNewLine
-	Next
-End Function
+WEnd

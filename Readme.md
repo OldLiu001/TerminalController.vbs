@@ -57,7 +57,7 @@ A Portable version can help you publish your script to others.
 
 #### Method 1: Using **"Windows Script host File"**
 
-Copy script file *'TerminalController.vbs'* to your script's parent folder.
+Copy script file *TerminalController.vbs* to your script's parent folder.
 
 Assume that your script's file name is *MyScript.vbs*, use following template code:
 
@@ -98,7 +98,7 @@ Set objTerminalController = New TerminalController
 
 #### Method 2: Using **"ExecuteGlobal"**
 
-Copy script file *'TerminalController.vbs'* to your script's parent folder.
+Copy script file *TerminalController.vbs* to your script's parent folder.
 
 Append the following code to your script:
 
@@ -140,7 +140,7 @@ Set objTerminalController = New TerminalController
 
 Assume that your script's file name is *MyScript.js*.
 
-Similar with *VBScript*, you can simply use the following templates.
+Similar to *VBScript*, you can simply use the following templates.
 
 *Template.wsf*
 
@@ -250,7 +250,7 @@ Styles: *Normal*, *Bold*, *Dim*, *Italic*, *Underline*, *Blink*, *Reverse*, *Inv
 - [Rain.vbs](Examples/Rain.vbs) - code rain animation in VBScript
 - [Startup.js](Examples/Startup.js) - Windows 2000 startup animation in JScript
 - [LifeGame.wsf](Examples/LifeGame.wsf) - Conway's Game of Life in JScript
-- [Ant.wsf] - Langton's ant in JScript
+- [Ant.js](Examples/Ant.js) - Langton's ant in JScript
 
 # See Also
 

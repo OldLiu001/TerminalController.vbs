@@ -1,0 +1,10 @@
+<job id="LifeGame">
+   <script language="JScript">
+      var oTerminal = new ActiveXObject("Terminal.Controller");
+      oTerminal.SetPrinter(function (strControlSequence) {
+         WScript.StdOut.Write(strControlSequence);
+      });
+
+      
+   </Script>
+</job>
