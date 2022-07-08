@@ -5,6 +5,10 @@
          WScript.StdOut.Write(strControlSequence);
       });
 
+        
+      Terminal.HideCursor();
+      Terminal.SetTextColor('BrightWhite', 'BrightBlack');
+      Terminal.ClearScreen();
       
    </Script>
 </job>

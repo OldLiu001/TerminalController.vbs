@@ -65,8 +65,8 @@ var objTerminalController = new ActiveXObject("Terminal.Controller");
 
 ```
 <job id="MyScript">
-	<script language="VBScript" src="TerminalController.vbs" />
-	<script language="VBScript" src="MyScript.vbs" />
+	<script language="VBScript" src="TerminalController.vbs"/>
+	<script language="VBScript" src="MyScript.vbs"/>
 </job>
 ```
 
@@ -144,7 +144,7 @@ Set objTerminalController = New TerminalController
 
 ```
 <job id="MyScript">
-	<script language="VBScript" src="TerminalController.vbs" />
+	<script language="VBScript" src="TerminalController.vbs"/>
 	<script language="VBScript">
 		Function GenerateObject(ByVal strClassName)
 			Set GenerateObject = EVal("New " & strClassName)
@@ -244,15 +244,22 @@ objTerminalController.SetPrinter(function (strControlSequence) {
 # 示例
 
 - [Colors.vbs](Examples/Colors.vbs) - 测试所有颜色 (VBScript)
+
 - [Styles.wsf](Examples/Styles.wsf) - 测试所有文本类型 (VBScript)
+
 - [Rain.vbs](Examples/Rain.vbs) - 代码雨特效 (VBScript)
+
 - [Startup.js](Examples/Startup.js) - Windows 2000 启动特效 (JScript)
-- [LifeGame.wsf](Examples/LifeGame.wsf) - 康威生命游戏 (JScript)
-- [Ant.js](Examples/Ant.js) - 兰顿蚂蚁 (JScript)
+
+- [LifeGame.wsf(TODO)](Examples/LifeGame.wsf) - 康威生命游戏 (JScript)
+
+- [Ant.js(TODO)](Examples/Ant.js) - 兰顿蚂蚁 (JScript)
 
 
 # 参照
 
 - [writing-a-tui-in-bash](https://github.com/dylanaraps/writing-a-tui-in-bash)
+
 - [color.js](https://github.com/Marak/colors.js)
+
 - [vt510](https://vt100.net/docs/vt510-rm/contents.html)

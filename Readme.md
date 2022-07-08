@@ -66,8 +66,8 @@ Assume that your script's file name is *MyScript.vbs*, use following template co
 
 ```
 <job id="MyScript">
-	<script language="VBScript" src="TerminalController.vbs" />
-	<script language="VBScript" src="MyScript.vbs" />
+	<script language="VBScript" src="TerminalController.vbs"/>
+	<script language="VBScript" src="MyScript.vbs"/>
 </job>
 ```
 
@@ -146,7 +146,7 @@ Similar to *VBScript*, you can simply use the following templates.
 
 ```
 <job id="MyScript">
-	<script language="VBScript" src="TerminalController.vbs" />
+	<script language="VBScript" src="TerminalController.vbs"/>
 	<script language="VBScript">
 		Function GenerateObject(ByVal strClassName)
 			Set GenerateObject = EVal("New " & strClassName)
@@ -246,14 +246,21 @@ Styles: *Normal*, *Bold*, *Dim*, *Italic*, *Underline*, *Blink*, *Reverse*, *Inv
 # Examples
 
 - [Colors.vbs](Examples/Colors.vbs) - test all colors in VBScript
+
 - [Styles.wsf](Examples/Styles.wsf) - test all styles in VBScript
+
 - [Rain.vbs](Examples/Rain.vbs) - code rain animation in VBScript
+
 - [Startup.js](Examples/Startup.js) - Windows 2000 startup animation in JScript
-- [LifeGame.wsf](Examples/LifeGame.wsf) - Conway's Game of Life in JScript
-- [Ant.js](Examples/Ant.js) - Langton's ant in JScript
+
+- [LifeGame.wsf(TODO)](Examples/LifeGame.wsf) - Conway's Game of Life in JScript
+
+- [Ant.js(TODO)](Examples/Ant.js) - Langton's ant in JScript
 
 # See Also
 
 - [writing-a-tui-in-bash](https://github.com/dylanaraps/writing-a-tui-in-bash)
+
 - [color.js](https://github.com/Marak/colors.js)
+
 - [vt510](https://vt100.net/docs/vt510-rm/contents.html)
