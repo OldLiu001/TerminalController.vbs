@@ -251,9 +251,9 @@ objTerminalController.SetPrinter(function (strControlSequence) {
 
 - [Startup.js](Examples/Startup.js) - Windows 2000 启动特效 (JScript)
 
-- [LifeGame.wsf(TODO)](Examples/LifeGame.wsf) - 康威生命游戏 (JScript)
+- [ConwayLife.wsf(TODO)](Examples/ConwayLife.wsf) - 康威生命游戏 (JScript)
 
-- [Ant.js(TODO)](Examples/Ant.js) - 兰顿蚂蚁 (JScript)
+- [LangtonAnt.js(TODO)](Examples/LangtonAnt.js) - 兰顿蚂蚁 (JScript)
 
 
 # 参照

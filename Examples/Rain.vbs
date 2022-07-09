@@ -22,33 +22,31 @@ ReDim alngRainDropTail(lngWidth - 1), astrRainDropHead(lngWidth - 1)
 Dim i
 While True
 	For i = 0 To lngWidth - 1
-                'Generate rain drop
+		'Generate rain drop
 		If alngRainDropHead(i) = Empty Then
-	        	alngRainDropHead(i) = - Fix(Rnd * lngHeight)
-	        	alngRainDropLength(i) = Fix(Rnd * (lngHeight / 3) * 2) + Fix(lngHeight / 4)
+			alngRainDropHead(i) = - Fix(Rnd * lngHeight)
+			alngRainDropLength(i) = Fix(Rnd * (lngHeight / 3) * 2) + Fix(lngHeight / 4)
 		End If
+		alngRainDropTail(i) = alngRainDropHead(i) - alngRainDropLength(i)
 
-                alngRainDropTail(i) = alngRainDropHead(i) - alngRainDropLength(i)
-
-                'Draw rain drop
+		'Draw rain drop
+		If alngRainDropHead(i) <= lngHeight And alngRainDropHead(i) >= 1 Then
+			objTerminal.SetTextColor "BrightGreen", "Black"
+			objTerminal.MoveCursorTo alngRainDropHead(i), i
+			WScript.StdOut.Write astrRainDropHead(i)
+		End If
 		If alngRainDropHead(i) < lngHeight And alngRainDropHead(i) >= 0 Then
-                        If alngRainDropHead(i) >= 1 Then
-                            objTerminal.SetTextColor "BrightGreen", "Black"
-                            objTerminal.MoveCursorTo alngRainDropHead(i), i
-	                    WScript.StdOut.Write astrRainDropHead(i)
-                        End If
-                        
-                        objTerminal.SetTextColor "BrightWhite", "Black"
-                        objTerminal.MoveCursorTo alngRainDropHead(i) + 1, i
-                        astrRainDropHead(i) = Mid(CHAR_MAP,Fix(Rnd * Len(CHAR_MAP)) + 1,1)
-	                WScript.StdOut.Write astrRainDropHead(i)
+			objTerminal.SetTextColor "BrightWhite", "Black"
+			objTerminal.MoveCursorTo alngRainDropHead(i) + 1, i
+			astrRainDropHead(i) = Mid(CHAR_MAP,Fix(Rnd * Len(CHAR_MAP)) + 1,1)
+			WScript.StdOut.Write astrRainDropHead(i)
 		End If
 		If alngRainDropTail(i) < lngHeight And alngRainDropTail(i) >= 0 Then
-                        objTerminal.MoveCursorTo alngRainDropTail(i) + 1, i
-	                WScript.StdOut.Write " "
+			objTerminal.MoveCursorTo alngRainDropTail(i) + 1, i
+			WScript.StdOut.Write " "
 		End If
 
-                'Clear rain drop
+		'Clear rain drop
 		If alngRainDropTail(i) + 1 = lngHeight Then
 			alngRainDropHead(i) = Empty
 		Else

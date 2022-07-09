@@ -253,9 +253,9 @@ Styles: *Normal*, *Bold*, *Dim*, *Italic*, *Underline*, *Blink*, *Reverse*, *Inv
 
 - [Startup.js](Examples/Startup.js) - Windows 2000 startup animation in JScript
 
-- [LifeGame.wsf(TODO)](Examples/LifeGame.wsf) - Conway's Game of Life in JScript
+- [ConwayLife.wsf(TODO)](Examples/ConwayLife.wsf) - Conway's Game of Life in JScript
 
-- [Ant.js(TODO)](Examples/Ant.js) - Langton's ant in JScript
+- [LangtonAnt.js(TODO)](Examples/LangtonAnt.js) - Langton's Ant in JScript
 
 # See Also
 
