@@ -16,11 +16,11 @@ var Buffer = {
     RowLength : 300,
     ColumnLength : 300
 }
-Buffer.Status = (function (RowLength, ColumnLength) {
+Buffer.Status = (function (nRowLength, nColumnLength) {
     var aStatus = [];
-    for (var i = 0; i < ColumnLength; i++){
+    for (var i = 0; i < nColumnLength; i++){
         aStatus[i] = [];
-        for (var j = 0; j < RowLength; j++)
+        for (var j = 0; j < nRowLength; j++)
             aStatus[i][j] = Block.Black;
     }
     return aStatus;
