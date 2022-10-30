@@ -255,7 +255,7 @@ Styles: *Normal*, *Bold*, *Dim*, *Italic*, *Underline*, *Blink*, *Reverse*, *Inv
 
 - [ConwayLife.wsf(TODO)](Examples/ConwayLife.wsf) - Conway's Game of Life in JScript
 
-- [LangtonAnt.js(TODO)](Examples/LangtonAnt.js) - Langton's Ant in JScript
+- [LangtonAnt.js](Examples/LangtonAnt.js) - Langton's Ant in JScript
 
 # See Also
 

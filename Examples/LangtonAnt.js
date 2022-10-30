@@ -7,85 +7,105 @@ Terminal.HideCursor();
 Terminal.SetTextColor('White', 'Black');
 Terminal.ClearScreen();
 
-nXMax = Math.floor(Terminal.ColumnLength / 2);
-nYMax = Terminal.RowLength - 1;
+var Block = {
+    Black : '  ',
+    White: String.fromCharCode(0x2588) + String.fromCharCode(0x2588)
+}
 
-// WScript.Echo(nWidth, nHeight);
+var Buffer = {
+    RowLength : 300,
+    ColumnLength : 300
+}
+Buffer.Status = (function (RowLength, ColumnLength) {
+    var aStatus = [];
+    for (var i = 0; i < ColumnLength; i++){
+        aStatus[i] = [];
+        for (var j = 0; j < RowLength; j++)
+            aStatus[i][j] = Block.Black;
+    }
+    return aStatus;
+})(Buffer.RowLength, Buffer.ColumnLength);
 
-Color = {Black : '  ', White: String.fromCharCode(0x2588) + String.fromCharCode(0x2588)}
-
-var aScreen = [];
-for (var i = 0; i < nXMax; i++){
-	aScreen[i] = [];
-	for (var j = 0; j < nYMax; j++)
-		aScreen[i][j] = Color.Black;
+var Screen = {
+    RowLength : Terminal.RowLength,
+    ColumnLength : Math.floor(Terminal.ColumnLength / 2),
+    Step : 0
+}
+Screen.Position = { // Screen top left corner position in Buffer
+    X : Math.floor(Buffer.ColumnLength / 2) - Math.floor(Screen.ColumnLength / 2),
+    Y : Math.floor(Buffer.RowLength / 2) - Math.floor(Screen.RowLength / 2)
+};
+Screen.Draw = function (oPosition) {
+    Terminal.MoveCursorTo(0,0);
+    WScript.StdOut.Write('Step: ' + Screen.Step.toString());
+    Screen.Step ++;
+    if ( // Ant escaped from Screen
+            oPosition.Y <= Screen.Position.Y + 1 ||
+            oPosition.X <= Screen.Position.X ||
+            oPosition.Y >= Screen.Position.Y + Screen.RowLength ||
+            oPosition.X >= Screen.Position.X + Screen.ColumnLength
+    ) {
+        // Refresh Screen position.
+        Screen.Position = {
+            X : oPosition.X - Math.floor(Screen.ColumnLength / 2),
+            Y: oPosition.Y - Math.floor(Screen.RowLength / 2)
+        };
+        // Redraw all Blocks.
+        for(var y = 2; y < Screen.RowLength; y ++){
+            for(var x = 0; x < Screen.ColumnLength; x ++){
+                Terminal.MoveCursorTo(y, x * 2);
+                WScript.StdOut.Write(Buffer.Status[Screen.Position.X + x][Screen.Position.Y + y]);
+            }
+        }
+    } else {
+        Terminal.MoveCursorTo(
+                oPosition.Y - Screen.Position.Y,
+                (oPosition.X - Screen.Position.X) * 2);
+        WScript.StdOut.Write(Buffer.Status[oPosition.X][oPosition.Y]);
+    }
 }
 
 var Direction = {
-	Down : 0,
-	Left : 1,
-	Up : 2,
-	Right : 3,
-	TurnRight : function (i) {return (i + 1) % 4;},
-	TurnLeft : function (i) {return (i + 3) % 4;}
-}
-
-function Position(X, Y){
-	this.X = X;
-	this.Y = Y;
-}
-
-function MoveFoward(oPosition, oDirection){
-	var X = oPosition.X + (
-		oDirection == Direction.Down ? 1 : (
-			oDirection == Direction.Up ? -1 : 0
-		)
-	)
-	var Y = oPosition.Y + (
-		oDirection == Direction.Right ? 1 : (
-			oDirection == Direction.Left ? -1 : 0
-		)
-	)
-	return new Position(X, Y);
+    Down : 0,
+    Left : 1,
+    Up : 2,
+    Right : 3,
+    TurnRight : function (i) {
+        return (i + 1) % 4;
+    },
+    TurnLeft : function (i) {
+        return (i + 3) % 4;
+    }
 }
 
 var Ant = {
-	Position : new Position(Math.floor(nXMax / 2), Math.floor(nYMax / 2)),
-	Direction : Direction.Down
+    Position : {
+        X : Math.floor(Buffer.ColumnLength / 2),
+        Y : Math.floor(Buffer.RowLength / 2)
+    },
+    Direction : Direction.Up
+};
+Ant.Move = function () {
+    Ant.Position.Y = Ant.Position.Y + (
+            Ant.Direction == Direction.Down ? 1 : (
+                    Ant.Direction == Direction.Up ? -1 : 0));
+    Ant.Position.X = Ant.Position.X + (
+            Ant.Direction == Direction.Right ? 1 : (
+                    Ant.Direction == Direction.Left ? -1 : 0));
+};
+Ant.Turn = function () {
+    if (Buffer.Status[Ant.Position.X][Ant.Position.Y] == Block.Black) {
+        Ant.Direction = Direction.TurnLeft(Ant.Direction);
+        Buffer.Status[Ant.Position.X][Ant.Position.Y] = Block.White;
+    } else {
+        Ant.Direction = Direction.TurnRight(Ant.Direction);
+        Buffer.Status[Ant.Position.X][Ant.Position.Y] = Block.Black;
+    }
 };
 
-//Terminal.MoveCursorTo(Ant.Position.Y, Ant.Position.X * 2);
-//WScript.StdOut.Write('AA');
-//WScript.Sleep(4000);
-
-//WScript.Echo(Ant.Direction, Ant.Position.X, Ant.Position.Y, Direction.TurnRight(Ant.Direction));
-
-//AntMove(aScreen,Ant);
-
-function AntMove(aScreen, oAnt) {
-	//WScript.Echo(oAnt.Direction, oAnt.Position.X, oAnt.Position.Y, Direction.TurnRight(oAnt.Direction));
-	//WScript.Echo('0');
-	if (aScreen[oAnt.Position.X][oAnt.Position.Y] == Color.Black) {
-		//WScript.Echo('1');
-		oAnt.Direction = Direction.TurnRight(oAnt.Direction);
-	} else {
-		oAnt.Direction = Direction.TurnLeft(oAnt.Direction);
-	}
-	oAnt.Position = MoveFoward(oAnt.Position, oAnt.Direction);
-	//return aScreen[oAnt.Position.X][oAnt.Position.Y] === Color.Black ? Color.White : Color.Black;
-	return !aScreen[oAnt.Position.X][oAnt.Position.Y];
+while (Screen.Step <= 13000) {
+    Ant.Turn();
+    Screen.Draw(Ant.Position);
+    Ant.Move();
+    WScript.Sleep(1);
 }
-
-while (true
-	//Ant.Position.X < nXMax &&
-	//Ant.Position.Y < nYMax &&
-	//Ant.Position.X >= 0 &&
-	//Ant.Position.Y >= 0
-) {
-	Terminal.MoveCursorTo(Ant.Position.Y, Ant.Position.X * 2);
-	aScreen[Ant.Position.X][Ant.Position.Y] = AntMove(aScreen, Ant);
-	WScript.StdOut.Write(aScreen[Ant.Position.X][Ant.Position.Y] == true ? Color.White : Color.Black);
-	WScript.Sleep(10);
-}
-
-//show 

@@ -253,7 +253,7 @@ objTerminalController.SetPrinter(function (strControlSequence) {
 
 - [ConwayLife.wsf(TODO)](Examples/ConwayLife.wsf) - 康威生命游戏 (JScript)
 
-- [LangtonAnt.js(TODO)](Examples/LangtonAnt.js) - 兰顿蚂蚁 (JScript)
+- [LangtonAnt.js](Examples/LangtonAnt.js) - 兰顿蚂蚁 (JScript)
 
 
 # 参照
