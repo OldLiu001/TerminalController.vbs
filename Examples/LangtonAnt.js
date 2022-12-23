@@ -13,22 +13,22 @@ var Block = {
 }
 
 var Buffer = {
-    RowLength : 300,
-    ColumnLength : 300
+    ColumnLength : 300,
+    RowLength : 300
 }
-Buffer.Status = (function (nRowLength, nColumnLength) {
+Buffer.Status = (function (nColumnLength, nRowLength) {
     var aStatus = [];
-    for (var i = 0; i < nColumnLength; i++){
-        aStatus[i] = [];
-        for (var j = 0; j < nRowLength; j++)
-            aStatus[i][j] = Block.Black;
+    for (var x = 0; x < nColumnLength; x ++){
+        aStatus[x] = [];
+        for (var y = 0; y < nRowLength; y ++)
+            aStatus[x][y] = Block.Black;
     }
     return aStatus;
-})(Buffer.RowLength, Buffer.ColumnLength);
+})(Buffer.ColumnLength, Buffer.RowLength);
 
 var Screen = {
-    RowLength : Terminal.RowLength,
     ColumnLength : Math.floor(Terminal.ColumnLength / 2),
+    RowLength : Terminal.RowLength,
     Step : 0
 }
 Screen.Position = { // Screen top left corner position in Buffer
@@ -40,19 +40,19 @@ Screen.Draw = function (oPosition) {
     WScript.StdOut.Write('Step: ' + Screen.Step.toString());
     Screen.Step ++;
     if ( // Ant escaped from Screen
-            oPosition.Y <= Screen.Position.Y + 1 ||
             oPosition.X <= Screen.Position.X ||
-            oPosition.Y >= Screen.Position.Y + Screen.RowLength ||
-            oPosition.X >= Screen.Position.X + Screen.ColumnLength
+            oPosition.X >= Screen.Position.X + Screen.ColumnLength ||
+            oPosition.Y <= Screen.Position.Y + 1 ||
+            oPosition.Y >= Screen.Position.Y + Screen.RowLength
     ) {
         // Refresh Screen position.
         Screen.Position = {
             X : oPosition.X - Math.floor(Screen.ColumnLength / 2),
-            Y: oPosition.Y - Math.floor(Screen.RowLength / 2)
+            Y : oPosition.Y - Math.floor(Screen.RowLength / 2)
         };
         // Redraw all Blocks.
-        for(var y = 2; y < Screen.RowLength; y ++){
-            for(var x = 0; x < Screen.ColumnLength; x ++){
+        for(var x = 0; x < Screen.ColumnLength; x ++){
+            for(var y = 2; y < Screen.RowLength; y ++){
                 Terminal.MoveCursorTo(y, x * 2);
                 WScript.StdOut.Write(Buffer.Status[Screen.Position.X + x][Screen.Position.Y + y]);
             }
@@ -87,11 +87,11 @@ var Ant = {
 };
 Ant.Move = function () {
     Ant.Position.Y = Ant.Position.Y + (
-            Ant.Direction == Direction.Down ? 1 : (
-                    Ant.Direction == Direction.Up ? -1 : 0));
+        Ant.Direction == Direction.Down ? 1 : (
+            Ant.Direction == Direction.Up ? -1 : 0));
     Ant.Position.X = Ant.Position.X + (
-            Ant.Direction == Direction.Right ? 1 : (
-                    Ant.Direction == Direction.Left ? -1 : 0));
+        Ant.Direction == Direction.Right ? 1 : (
+            Ant.Direction == Direction.Left ? -1 : 0));
 };
 Ant.Turn = function () {
     if (Buffer.Status[Ant.Position.X][Ant.Position.Y] == Block.Black) {
