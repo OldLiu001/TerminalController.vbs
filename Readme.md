@@ -1,3 +1,13 @@
+![Rain.vbs](https://images.ru7q4xqo012.com/api/file/caches/v5/get?owner=4d2a339e50f7fa6b&type=message&file_key=9e691ece61934f75d03f2c0b29a44fd9242f69d8f8e6162e5a1de22f1ed33819)
+
+![LangtonAnt.js](https://images.ru7q4xqo012.com/api/file/caches/v5/get?owner=4d2a339e50f7fa6b&type=message&file_key=66e1e26f6c17e5b878db086834662d819b56b0113853504e9ddb53ab991f258a)
+
+![Startup.js](https://images.ru7q4xqo012.com/api/file/caches/v5/get?owner=4d2a339e50f7fa6b&type=message&file_key=394a8b6ffc6751a2496e21e5d7b62d14bf05098d42048ec0e17b7a90a467bd2e)
+
+![Colors.vbs](https://images.ru7q4xqo012.com/api/file/caches/v5/get?owner=4d2a339e50f7fa6b&type=message&file_key=3e94ac38b6e94c3fd546f905ee7107e8c70f5ca3c360b3a7e43bc71f22480296)
+
+![Styles.wsf](https://images.ru7q4xqo012.com/api/file/caches/v5/get?owner=4d2a339e50f7fa6b&type=message&file_key=3bba0ae165ec71cd212646fc45597d4a75cad0b08ce0310156ec6717dfc80ed4)
+
 ```
  ___ __, __, _, _ _ _, _  _, _,     _,  _, _, _ ___ __,  _, _,  _,  __, __,
   |  |_  |_) |\/| | |\ | /_\ |     / ` / \ |\ |  |  |_) / \ |   |   |_  |_)
@@ -247,15 +257,25 @@ Styles: *Normal*, *Bold*, *Dim*, *Italic*, *Underline*, *Blink*, *Reverse*, *Inv
 
 - [Colors.vbs](Examples/Colors.vbs) - test all colors in VBScript
 
+![Colors.vbs](https://images.ru7q4xqo012.com/api/file/caches/v5/get?owner=4d2a339e50f7fa6b&type=message&file_key=3e94ac38b6e94c3fd546f905ee7107e8c70f5ca3c360b3a7e43bc71f22480296)
+
 - [Styles.wsf](Examples/Styles.wsf) - test all styles in VBScript
+
+![Styles.wsf](https://images.ru7q4xqo012.com/api/file/caches/v5/get?owner=4d2a339e50f7fa6b&type=message&file_key=3bba0ae165ec71cd212646fc45597d4a75cad0b08ce0310156ec6717dfc80ed4)
 
 - [Rain.vbs](Examples/Rain.vbs) - code rain animation in VBScript
 
+![Rain.vbs](https://images.ru7q4xqo012.com/api/file/caches/v5/get?owner=4d2a339e50f7fa6b&type=message&file_key=9e691ece61934f75d03f2c0b29a44fd9242f69d8f8e6162e5a1de22f1ed33819)
+
 - [Startup.js](Examples/Startup.js) - Windows 2000 startup animation in JScript
 
-- [ConwayLife.wsf(TODO)](Examples/ConwayLife.wsf) - Conway's Game of Life in JScript
+![Startup.js](https://images.ru7q4xqo012.com/api/file/caches/v5/get?owner=4d2a339e50f7fa6b&type=message&file_key=394a8b6ffc6751a2496e21e5d7b62d14bf05098d42048ec0e17b7a90a467bd2e)
 
 - [LangtonAnt.js](Examples/LangtonAnt.js) - Langton's Ant in JScript
+
+![LangtonAnt.js](https://images.ru7q4xqo012.com/api/file/caches/v5/get?owner=4d2a339e50f7fa6b&type=message&file_key=66e1e26f6c17e5b878db086834662d819b56b0113853504e9ddb53ab991f258a)
+
+- [ConwayLife.wsf(TODO)](Examples/ConwayLife.wsf) - Conway's Game of Life in JScript
 
 # See Also
 
