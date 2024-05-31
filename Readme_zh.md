@@ -269,8 +269,8 @@ objTerminalController.SetPrinter(function (strControlSequence) {
 
 # 参照
 
-- [writing-a-tui-in-bash](https://github.com/dylanaraps/writing-a-tui-in-bash)
+- [控制台虚拟终端序列](https://learn.microsoft.com/zh-cn/windows/console/console-virtual-terminal-sequences)
 
-- [color.js](https://github.com/Marak/colors.js)
+- [writing-a-tui-in-bash](https://github.com/dylanaraps/writing-a-tui-in-bash)
 
 - [vt510](https://vt100.net/docs/vt510-rm/contents.html)

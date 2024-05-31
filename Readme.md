@@ -271,8 +271,8 @@ Styles: *Normal*, *Bold*, *Dim*, *Italic*, *Underline*, *Blink*, *Reverse*, *Inv
 
 # See Also
 
-- [writing-a-tui-in-bash](https://github.com/dylanaraps/writing-a-tui-in-bash)
+- [console-virtual-terminal-sequences](https://learn.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences)
 
-- [color.js](https://github.com/Marak/colors.js)
+- [writing-a-tui-in-bash](https://github.com/dylanaraps/writing-a-tui-in-bash)
 
 - [vt510](https://vt100.net/docs/vt510-rm/contents.html)
