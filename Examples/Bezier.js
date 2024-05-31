@@ -1,3 +1,5 @@
+// Code BY OldLiu, Idea BY Vicyang.
+
 //初始化。
 var Terminal = new ActiveXObject('Terminal.Controller');
 Terminal.SetPrinter(function (sControlSequence) {
@@ -11,10 +13,10 @@ Terminal.ClearScreen();
 //设置区。
 var lngBufferWidth = Math.floor(Terminal.ColumnLength / 2);    //缓冲区列数
 var lngBufferHeight = Terminal.RowLength - 1;   //缓冲区行数
-var lngPointNumber = 6; //绘制点数
-var numMoveSpeed = 0.04;    //移动紧密度
-var lngLayer = 10;   //轨迹保留层数
-var lngSleep = 30;  //绘制延时
+var lngPointNumber = 12; //绘制点数
+var numMoveSpeed = 0.08;    //移动紧密度
+var lngLayer = 6;   //轨迹保留层数
+var lngSleep = 40;  //绘制延时
 
 function Point(x, y) {
 	this.x = x;
