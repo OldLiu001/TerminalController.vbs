@@ -1,4 +1,4 @@
-// Code BY OldLiu, Idea BY Vicyang.
+// Code by OldLiu, idea by Vicyang.
 
 //初始化。
 var Terminal = new ActiveXObject('Terminal.Controller');
@@ -180,8 +180,8 @@ function RandomInteger(lngStart, lngEnd) {
 	return lngStart + Math.floor(Math.random() * (lngEnd - lngStart));
 }
 
-//setInterval函数的Polyfill。
 function setInterval(f, intv) {
+	//setInterval函数的Polyfill。
 	for(;;) {
 		f();
 		WScript.Sleep(intv);
