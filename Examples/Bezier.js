@@ -10,6 +10,21 @@ Terminal.HideCursor();
 Terminal.SetTextColor('BrightGreen', 'Black');
 Terminal.ClearScreen();
 
+function DrawResult(strBuffer) {
+	//绘制结果。
+	Terminal.MoveCursorTo(0, 0);
+	WScript.StdOut.Write(strBuffer);
+}
+
+
+function setInterval(f, intv) {
+	//setInterval函数的Polyfill。
+	for(;;) {
+		f();
+		WScript.Sleep(intv);
+	}
+}
+
 //设置区。
 var lngBufferWidth = Math.floor(Terminal.ColumnLength / 2);    //缓冲区列数
 var lngBufferHeight = Terminal.RowLength - 1;   //缓冲区行数
@@ -121,8 +136,7 @@ function run() {
 			strBuffer += arrBuffer[i].join('') + '\n';
 		}
 		
-		Terminal.MoveCursorTo(0, 0);
-		WScript.StdOut.Write(strBuffer);
+		DrawResult(strBuffer);
 	}, lngSleep);
 }
 
@@ -178,14 +192,6 @@ function NewRandomPoint(lngRangeXStart, lngRangeXEnd, lngRangeYStart, lngRangeYE
 function RandomInteger(lngStart, lngEnd) {
 	//获得以lngStart为下界（含lngStart），lngEnd为上界（不含lngEnd）的随机整数。
 	return lngStart + Math.floor(Math.random() * (lngEnd - lngStart));
-}
-
-function setInterval(f, intv) {
-	//setInterval函数的Polyfill。
-	for(;;) {
-		f();
-		WScript.Sleep(intv);
-	}
 }
 
 
