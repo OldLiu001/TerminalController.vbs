@@ -245,27 +245,19 @@ objTerminalController.SetPrinter(function (strControlSequence) {
 
 - [Colors.vbs](Examples/Colors.vbs) - 测试所有颜色 (VBScript)
 
-![Colors.vbs](https://images.ru7q4xqo012.com/api/file/caches/v5/get?owner=4d2a339e50f7fa6b&type=message&file_key=3e94ac38b6e94c3fd546f905ee7107e8c70f5ca3c360b3a7e43bc71f22480296)
-
 - [Styles.wsf](Examples/Styles.wsf) - 测试所有文本类型 (VBScript)
-
-![Styles.wsf](https://images.ru7q4xqo012.com/api/file/caches/v5/get?owner=4d2a339e50f7fa6b&type=message&file_key=3bba0ae165ec71cd212646fc45597d4a75cad0b08ce0310156ec6717dfc80ed4)
 
 - [Rain.vbs](Examples/Rain.vbs) - 代码雨特效 (VBScript)
 
-![Rain.vbs](https://images.ru7q4xqo012.com/api/file/caches/v5/get?owner=4d2a339e50f7fa6b&type=message&file_key=9e691ece61934f75d03f2c0b29a44fd9242f69d8f8e6162e5a1de22f1ed33819)
-
 - [Startup.js](Examples/Startup.js) - Windows 2000 启动特效 (JScript)
 
-![Startup.js](https://images.ru7q4xqo012.com/api/file/caches/v5/get?owner=4d2a339e50f7fa6b&type=message&file_key=394a8b6ffc6751a2496e21e5d7b62d14bf05098d42048ec0e17b7a90a467bd2e)
-
 - [LangtonAnt.js](Examples/LangtonAnt.js) - 兰顿蚂蚁 (JScript)
-
-![LangtonAnt.js](https://images.ru7q4xqo012.com/api/file/caches/v5/get?owner=4d2a339e50f7fa6b&type=message&file_key=66e1e26f6c17e5b878db086834662d819b56b0113853504e9ddb53ab991f258a)
 
 - [ConwayLife.wsf(TODO)](Examples/ConwayLife.wsf) - 康威生命游戏 (JScript)
 
 - [Bezier.js](Examples/Bezier.js) - 多段贝塞尔曲线变换特效 (JScript)
+
+- [Hanoi.js](Examples/Hanoi.js) - 汉诺塔 (JScript)
 
 # 参照
 

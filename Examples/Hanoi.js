@@ -4,31 +4,31 @@ Terminal.SetPrinter(function (sControlSequence) {
 });
 
 Terminal.HideCursor();
+Terminal.SetTextColor('White', 'Black');
+Terminal.ClearScreen();
 
-var BufW = Terminal.ColumnLength;
-var BufH = Terminal.RowLength;
+var PrevState = [[1, 1, 1, 1], [0, 0, 0, 0], [0, 0, 0, 0]];
+PlayHanoi(4, 0, 2, DeepCopy(PrevState));
 
-// Draw the Hanoi Tower
-//test the DrawTower function
-WScript.Echo(DrawTower([0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]).join('\n'));
-WScript.Echo(DrawTower([1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]).join('\n'));
-WScript.Echo(DrawTower([0, 1, 0, 1], [1, 0, 1, 0], [0, 1, 0, 1]).join('\n'));
-
-
-
-
+function DeepCopy(State) {
+	var Copy = [];
+	for (var i = 0; i < 3; i++) {
+		Copy.push(State[i].slice());
+	}
+	return Copy;
+}
 
 function DrawTower(a, b, c) {
 	var TowerTemplate = [
-		['     ©à     ', '     ©¦     '],
-		['    ©¤©à©¤    ', '     ©¦     '],
-		['   ©¤©¤©à©¤©¤   ', '     ©¦     '],
-		['  ©¤©¤©¤©à©¤©¤©¤  ', '     ©¦     '],
+		['     ©¦     ', '     ©à     '],
+		['     ©¦     ', '    ©¤©à©¤    '],
+		['     ©¦     ', '   ©¤©¤©à©¤©¤   '],
+		['     ©¦     ', '  ©¤©¤©¤©à©¤©¤©¤  '],
 		['¨\¨T¨T¨T¨T¨k¨T¨T¨T¨T¨_', '¨\¨T¨T¨T¨T¨k¨T¨T¨T¨T¨_']
 	];
+	var Spaces = '  ';
 
 	var Tower = [];
-	var Spaces = '  ';
 	for (var i = 1; i <= 4; i++) {
 		Tower.push(
 			TowerTemplate[i - 1][a[i - 1]] + Spaces +
@@ -44,12 +44,33 @@ function DrawTower(a, b, c) {
 }
 
 
-function PlayHanoi(n, a, b, c) {
-	if (n == 1) {
-		Terminal.PrintLn('Move disk 1 from ' + a + ' to ' + c);
+function PlayHanoi(N, Src, Dst, State) {
+	var Aux = 3 - Src - Dst;
+
+	if (N == 1) {
+		State[Dst][N - 1] = 1;
+		State[Src][N - 1] = 0;
+		DrawState(N, Src, Dst, State);
 		return;
 	}
-	PlayHanoi(n - 1, a, c, b);
-	Terminal.PrintLn('Move disk ' + n + ' from ' + a + ' to ' + c);
-	PlayHanoi(n - 1, b, a, c);
+
+	PlayHanoi(N - 1, Src, Aux, State);
+
+	State[Dst][N - 1] = 1;
+	State[Src][N - 1] = 0;
+	DrawState(N, Src, Dst, State);
+	
+	PlayHanoi(N - 1, Aux, Dst, State);
+}
+
+function DrawState(N, Src, Dst, State) {
+	Terminal.MoveCursorTo(0, 0);
+	WScript.Echo('Move disk ' + N + ' from ' + (Src + 1) + ' to ' + (Dst + 1) + '.' + '\n');
+	WScript.Echo(DrawTower(State[0], State[1], State[2]).join('\n') + '\n');
+	WScript.Echo('Previous state:' + '\n');
+	WScript.Echo(DrawTower(PrevState[0], PrevState[1], PrevState[2]).join('\n') + '\n');
+	WScript.Sleep(1000);
+
+	// Save the current state
+	PrevState = DeepCopy(State);
 }
